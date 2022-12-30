@@ -21,7 +21,7 @@ df.drop_duplicates(subset=['title','area','price','room_type'], keep='first', in
 
 print(len(df))
 
-df.to_csv("lianjia_lz_clean.csv")
+df.to_csv("lianjia_sh_clean.csv")
 
 
 

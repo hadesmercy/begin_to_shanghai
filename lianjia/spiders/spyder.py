@@ -11,7 +11,7 @@ class LianjiaSpider(scrapy.Spider):  # 必须继承scrapy.Spider
     custom_settings = {
         'ITEM_PIPELINES': {'lianjia.pipelines.LianjiaPipeline': 300,},
     }
-    start_urls = ['https://lz.lianjia.com/zufang']  # URL列表
+    start_urls = ['https://sh.lianjia.com/zufang']  # URL列表
 
     def __init__(self):
         self.url_num = 0
@@ -22,7 +22,7 @@ class LianjiaSpider(scrapy.Spider):  # 必须继承scrapy.Spider
         # 获取各个区的url
         regions = response.css('#filter > ul:nth-child(2) > li.filter__item--level2 > a')
         for region in regions[1:]:
-            url = 'https://lz.lianjia.com' + region.attrib['href']
+            url = 'https://sh.lianjia.com' + region.attrib['href']
             yield Request(url, callback=self.parse_region)
 
     # 遍历所有页
@@ -39,7 +39,7 @@ class LianjiaSpider(scrapy.Spider):  # 必须继承scrapy.Spider
                 #在这里使用户型和朝向的组合进行划分
 
                 typechose = ['l0','l1','l3','l4']
-                for j in range(1,8):
+                for j in range(1,9):
                     for s in typechose:
                         house_nums = int(
                             response.css('#content > div.content__article > p > span.content__title--hl::text').get())
